@@ -1,0 +1,392 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Vamos a usar la pseudo-clase llamada root */
+:root{
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.contenedor{
+    width: 90%;
+    max-width: 1200px; 
+    overflow: hidden; /* Para que todo lo que salga de este contenedor, se oculte. Todo lo que se desborde que se oculte*/
+    margin: auto;
+    padding: 60px 0; /* 60px arriba y abajo y 0 a los lados */
+} 
+
+header{
+    height: 100vh; /*El 100% de lo que ocupa la pantalla*/
+    background-image: linear-gradient(to top, #a18cd185 0%, rgba(251, 194, 235, 0.5) 100%), url(assets/woman.webp); /*Podemos usar un gradient, y para llamar a la imagen se tiene que usar una coma y luego la herramienta URL para llamar a la imagen*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.head{
+    text-align: center;
+    padding: 0; /* Porqué Padding de 0? porque en el html donde está el texto tiene la class="contenedor head" y contenedor en el css ya tiene 60px 0 entonces solo para el contenedor donde esta la frase le vamos a quitar esos paggings con un 0 */  
+    height: 100%;
+    display: flex; /*Para que se posicione vertical y horizontalmente al centro*/
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.menu{
+    position: fixed; /*Sirve para que la imagen este fija en toda la página*/
+    /*z-index: 10; */ /*Sirve que para cuando nosotros le demos click al boton de menu, no se desaparezca para asi poder cerrarlo, se agrega cuando estemos en los archivos de js, puede ser una opicion interesante en caso de que no quieras que se desaparezca el boton de menu*/
+    top: 30px;
+    right: 30px;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); /*0 en upset 0 en el upset y 6px en el blurr*/
+}
+
+.menu-navegacion{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30vw; /*Que seria el 30% de ancho de la pagina*/
+    height: 100%;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /*con center se van a centrar verticalmente y con space-evenly se va a repartir el espacio equitativamente verticalmente*/
+    align-items: center;
+    /*transition: transform .3s ease-in-out;*/
+    transform: translate(110%); /*Hace que el recuadro del menu desaparezca en su totalidad, por eso el 110%. Translate significa trasladar, es como esconderlo pero ahi esta*/
+    box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+}
+
+.spread{
+    transform: translate(0);/*Cuando demos click al boton de menu, hace que el recuadro del menu vuelva a aparecer de nuevo*/
+}
+
+.menu-navegacion a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.titulo{
+    font-size: 60px;
+    margin-bottom: 15px;
+
+}
+
+.copy{
+    font-weight: 300;
+    font-size: 25px;
+}
+
+/* Nuestro servicio */
+
+.subtitulo{
+    text-align: center;
+    font-weight: 300;
+    color: #9f8ad0;
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+
+.contenedor-servicio{
+    display: flex;
+    justify-content: space-evenly; /*Que es espacio equitativo*/
+    align-items: center;
+    flex-wrap: wrap; /*Es decir, si en algun momento los arvhivos o fotos no llegan a caber en la misma linea, quiero que en este caso lo pases abajo*/
+}
+
+.contenedor-servicio img{
+    width: 40%;
+}
+
+.checklist-servicio{
+    width: 45%;
+}
+
+.service{
+    margin-bottom: 20px;
+}
+
+.n-service{
+    margin-bottom: 7px;
+    color: #9f8ad0;
+}
+
+.number{
+    display: inline-block; /*Esto es para nosotros darle un widht y un height*/
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: 700;
+    line-height: 30px;
+    margin-right: 5px;
+}
+
+/* Gallery */
+
+.gallery{
+    background: #f2f2f2;
+}
+
+.contenedor-galeria{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.img-galeria{
+    object-fit: cover;
+    width: 30%;
+    display: block;
+    margin-bottom: 15px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+
+.imagen-light{
+    position: fixed;
+    background: rgba(0, 0, 0, .6);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(100%); /*Significa que la imagen va a desaparecer*/
+    transition: transform .2s ease-in-out; /* ease in out es un timing fushion,  */
+}
+
+.show{
+    transform: translate(0); /*El translate en 0 significa que la imagen se va a mostrar*/
+}
+
+.agregar-imagen{
+    object-fit: cover;
+    width: 60%;
+    border-radius: 10px; 
+    transform: scale(0);
+    transition: transform .3s .2s; /*El 2s de retraso o delay*/
+}
+
+.showImage{
+    transform: scale(1); /*Esta clase extra se va a agregar cuando nosotros demos click a la imagen */
+}
+
+.close{
+    position: absolute; /*Como su padre está fijo "imagen-light" fixed, entonces se va a posicionar inmediatamente a su padre  */
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    cursor: pointer;
+   /*Cuando vamos al icono de close, a la par de svg vamos a usar fill="#fff" para cambiar el color del icono*/
+}
+
+/* Expertos */
+
+.experts{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; /*Centrar verticalmente*/
+    flex-wrap: wrap;
+}
+
+.cont-expert{
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cont-expert img{
+    width: 80%;
+    display: block;
+    margin:0 auto;
+}
+
+.n-expert{
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%;
+    font-weight: 400;
+}
+
+/* Footer */
+
+footer{
+    background: #9f8ad0;
+    padding-bottom: 0.1px;
+    /*Tambien con border:1px solid #black puede evitar el colapso de margenes*/
+}
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.contact-us{
+    width: 40%;
+    color: #fff;
+}
+
+.brand{
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.brand+p{
+    font-weight: 500;
+}
+
+.social-media{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.social-media-icon{
+    display: inline-block;
+    margin-left: 20px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+}
+
+.social-media-icon:hover{
+    background: #fff;
+    color: #764ba2;
+}
+
+.social-media-icon i{
+    font-size: 60px;
+    line-height: 60px;
+}
+
+.line{
+    width: 90%;
+    max-width: 1200px;
+    margin:0 auto;
+    height: 2px;
+    background: #fff;
+    margin-bottom: 60px;
+}
+
+/* Responsive */
+/*A partir de 800px vamos a hacer el breakpoint*/
+
+@media screen and (max-width:800px) {
+    /*Menu*/
+    .menu-navegacion{
+        width: 50vw;
+    }
+
+    .titulo{
+        font-size: 40px;
+    }
+    /*Servicio*/
+    .contenedor-servicio img{
+        width: 80%;
+        margin-bottom: 40px;
+    }
+
+    .checklist-servicio{
+        width: 80%;
+    }
+
+    .service{
+        margin-bottom: 30px;
+    }
+    /*Galeria*/
+    .agregar-imagen{
+        width: 80%;
+    }
+
+    .img-galeria{
+        width: 45%;
+
+    }
+
+    /*Expertos en*/
+    .cont-expert{
+        width: 80%;
+    }
+
+    /*Footer*/
+    .footer-content{
+        justify-content: center;
+    }
+
+    .social-media{
+        width: 80%;
+        justify-content: space-evenly;
+    }
+
+    .social-media-icon{
+        margin-left: 0;
+    }
+
+    .social-media i{
+        margin-left: 0;
+    }
+
+    .contact-us{
+        text-align: center;
+        width: 80%;
+        margin-bottom: 40px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .menu-navegacion{
+        width: 65vw;
+    }
+    
+    .menu{
+        top: 20px;
+        right: 20px;   
+    }
+
+    .titulo{
+        font-size: 30px; 
+    }
+
+    .subtitulo{
+        font-size: 30px;
+    }
+
+    .agregar-imagen{
+        width: 95%;
+    }
+
+    .img-galeria{
+        width: 95%;
+    }
+
+    .social-media{
+        width: 100%;
+    }
+
+    .contact-us{
+        width: 90%;
+    }
+}
